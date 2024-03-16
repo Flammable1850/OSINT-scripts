@@ -15,7 +15,7 @@ extract_domain() {
 check_crtsh() {
     domain="$1"
     # Use curl to fetch the certificate information from crt.sh
-    crtsh_output=$(curl -s "https://crt.sh/?q=%.$domain&output=text" | grep -E "SHA-1|Subject:")
+    crtsh_output=$(curl -k -s "https://crt.sh/?q=%.$domain&output=text" | grep -E "SHA-1|Subject:")
 
     if [[ -n "$crtsh_output" ]]; then
         echo "Certificate info for $domain found on crt.sh:"
